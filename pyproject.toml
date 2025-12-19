@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "powder"
+version = "1.0.0"
+description = "Image steganography tool with AES-256 encryption"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "pillow",
+    "cryptography",
+]
+
+[project.scripts]
+powder = "powder:main"
+
+[tool.setuptools]
+py-modules = ["powder", "encode", "decode"]
