@@ -55,3 +55,58 @@ def encrypt_mode(input_image, output_image, password):
     except Exception as e:
         print(f"❌ Error: {e}")
         sys.exit(1)
+
+
+def decrypt_mode(encrypted_image, password):
+    """Extract and decrypt message from image."""
+    try:
+        encrypted_msg = decode_image(encrypted_image)
+        decrypted = aes_decrypt(encrypted_msg, password)
+        
+        print("\n✅ Decrypted Message:")
+        print("-" * 50)
+        print(decrypted)
+        print("-" * 50)
+    except FileNotFoundError:
+        print(f"❌ Error: Image file '{encrypted_image}' not found")
+        sys.exit(1)
+    except Exception:
+        print("❌ Error: Wrong password or corrupted data")
+        sys.exit(1)
+
+
+def main():
+    """Main entry point."""
+    if len(sys.argv) < 3:
+        print_usage()
+    
+    mode = sys.argv[1]
+    
+    if mode == "-e":
+        if len(sys.argv) != 5:
+            print("❌ Error: Encrypt mode requires 3 arguments")
+            print_usage()
+        
+        input_image = sys.argv[2]
+        output_image = sys.argv[3]
+        password = sys.argv[4]
+        
+        encrypt_mode(input_image, output_image, password)
+    
+    elif mode == "-d":
+        if len(sys.argv) != 4:
+            print("❌ Error: Decrypt mode requires 2 arguments")
+            print_usage()
+        
+        encrypted_image = sys.argv[2]
+        password = sys.argv[3]
+        
+        decrypt_mode(encrypted_image, password)
+    
+    else:
+        print(f"❌ Error: Unknown mode '{mode}'")
+        print_usage()
+
+
+if __name__ == "__main__":
+    main()
