@@ -22,23 +22,35 @@ It demonstrates the combination of steganography (hiding data) and cryptography 
     cd <repo-name>
     ```
 
-2.  **Install the package:**
+2.  **Install the package** (choose one):
+
+-  **Install inside a virtual environment (recommended):**
 
     ```bash
-    pip install -e .
+    # Create a virtual environment
+    python -m venv venv
+
+    # Activate it (Windows PowerShell)
+    .\venv\Scripts\Activate.ps1
+
+    # Or on Windows cmd
+    .\venv\Scripts\activate.bat
+
+    # Or on macOS / Linux
+    source venv/bin/activate
+
+    # Install the package into the active venv
+    pip install .
+    ```
+
+-  **Or install globally:**
+
+    ```bash
+    pip install .
     ```
 
     This will install `powder` as a command-line tool along with all dependencies (Pillow, Cryptography).
 
-3.  **Activate your virtual environment (if using one):**
-
-    ```bash
-    # On Windows PowerShell
-    .\.venv\Scripts\Activate.ps1
-
-    # On Linux/Mac
-    source .venv/bin/activate
-    ```
 
 ## Usage Examples
 
